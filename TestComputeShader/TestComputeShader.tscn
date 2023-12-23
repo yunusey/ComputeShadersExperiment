@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cghxlcvhdhq84"]
+
+[ext_resource type="Script" path="res://TestComputeShader/TestComputeShader.gd" id="1_8kcfu"]
+[ext_resource type="PackedScene" uid="uid://bbo3c2mi0m434" path="res://Planet/Planet.tscn" id="2_eadpj"]
+
+[node name="TestComputeShader" type="Node3D"]
+script = ExtResource("1_8kcfu")
+
+[node name="Planets" type="Node3D" parent="."]
+
+[node name="Planet" parent="Planets" instance=ExtResource("2_eadpj")]
+is_sun = null
+
+[node name="Planet2" parent="Planets" instance=ExtResource("2_eadpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 403.145)
+is_sun = null
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.196842, -0.661083, 0.724032, 0, 0.73848, 0.674275, -0.980435, -0.132726, 0.145364, 724.029, 674.273, 145.364)

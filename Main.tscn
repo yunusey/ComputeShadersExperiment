@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://ct0desu05von0"]
+
+[ext_resource type="PackedScene" uid="uid://bbo3c2mi0m434" path="res://Planet/Planet.tscn" id="1_kl0to"]
+[ext_resource type="Script" path="res://Main.gd" id="1_tave0"]
+[ext_resource type="PackedScene" uid="uid://bqi3y7ulf3amw" path="res://Interface/Interface.tscn" id="2_ail30"]
+[ext_resource type="Shader" path="res://Planet/Planet.gdshader" id="3_6xosa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wttj6"]
+sky_top_color = Color(0, 0, 0.0941176, 1)
+sky_horizon_color = Color(0, 0, 0.0941176, 1)
+ground_bottom_color = Color(0, 0, 0.0941176, 1)
+ground_horizon_color = Color(0, 0, 0.0941176, 1)
+
+[sub_resource type="Sky" id="Sky_ly5ak"]
+sky_material = SubResource("ProceduralSkyMaterial_wttj6")
+
+[sub_resource type="Environment" id="Environment_vrbht"]
+background_mode = 2
+sky = SubResource("Sky_ly5ak")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_inu84"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3hgxs"]
+seamless = true
+noise = SubResource("FastNoiseLite_inu84")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i5u1k"]
+render_priority = 0
+shader = ExtResource("3_6xosa")
+shader_parameter/emission_strength = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_3hgxs")
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_tave0")
+planet_interaction = false
+
+[node name="Interface" parent="." instance=ExtResource("2_ail30")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_vrbht")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.577145, 0.241547, -0.780102, 0, 0.955256, 0.295781, 0.816642, -0.170709, 0.551321, -668.808, 253.583, 472.667)
+
+[node name="Suns" type="Node3D" parent="."]
+
+[node name="Sun" parent="Suns" instance=ExtResource("1_kl0to")]
+material = SubResource("ShaderMaterial_i5u1k")
+is_sun = true
+
+[node name="Planets" type="Node3D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="use_compute_shader_changed" from="Interface" to="." method="_on_interface_use_compute_shader_changed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
