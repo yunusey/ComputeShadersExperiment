@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbo3c2mi0m434"]
+
+[ext_resource type="Shader" path="res://Planet/Planet.gdshader" id="1_dsrr8"]
+[ext_resource type="Script" path="res://Planet/Planet.gd" id="1_sd6ks"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v4qkc"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kcl5s"]
+seamless = true
+noise = SubResource("FastNoiseLite_v4qkc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8t74b"]
+render_priority = 0
+shader = ExtResource("1_dsrr8")
+shader_parameter/emission_strength = 10.0
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_kcl5s")
+
+[node name="Planet" type="CSGSphere3D"]
+radius = 100.0
+radial_segments = 32
+rings = 32
+material = SubResource("ShaderMaterial_8t74b")
+script = ExtResource("1_sd6ks")
+is_sun = null
