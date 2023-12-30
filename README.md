@@ -5,7 +5,14 @@ Welcome to ComputeShadersExperiment, a Godot project dedicated to exploring the 
 _PS: While there isn't a video showcasing the project due to performance issues during recording, the images below provide a glimpse of what the project accomplishes._
 
 ## Images 🎥
+<div align="center"><b>Uses Compute Shader</b></div>
 
+![Use Compute Shaders](https://github.com/yunusey/ComputeShadersExperiment/assets/107340417/0e3da32f-e09b-4feb-ab78-d93806e977ed)
+
+
+<div align="center"><b>Does Not Use Compute Shader</b></div>
+
+![Do not Use Compute Shaders](https://github.com/yunusey/ComputeShadersExperiment/assets/107340417/467f902b-8c2d-4272-a367-1fba3d1ab1b0)
 
 ## Download 📥
 You can either download the repo or clone it:
