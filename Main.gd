@@ -38,16 +38,16 @@ func _ready():
 		setup_compute_shader()
 
 func _process(delta):
+	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_down", "move_up")
+	if direction:
+		$Suns/Sun.position.x += direction.x
+		$Suns/Sun.position.y += direction.y
+
 	if paused:
 		return
 
 	if use_compute_shader:
 		update_compute_shader(delta)
-
-	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_down", "move_up")
-	if direction:
-		$Suns/Sun.position.x += direction.x
-		$Suns/Sun.position.y += direction.y
 
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_pause"):
