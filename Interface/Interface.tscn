@@ -40,7 +40,30 @@ theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("1_wxonn")
 text = "FPS: "
 
-[node name="CheckBox" type="CheckBox" parent="Control/LabelContainer"]
+[node name="PausedLabel" type="Label" parent="Control/LabelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("1_wxonn")
+text = "Paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SettingsContainer" type="VBoxContainer" parent="Control/LabelContainer"]
+layout_mode = 2
+
+[node name="PlanetInteraction" type="CheckBox" parent="Control/LabelContainer/SettingsContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = ExtResource("1_wxonn")
+theme_override_styles/pressed = ExtResource("1_wxonn")
+theme_override_styles/disabled = ExtResource("1_wxonn")
+theme_override_styles/hover = ExtResource("1_wxonn")
+theme_override_styles/hover_pressed = ExtResource("1_wxonn")
+theme_override_styles/focus = ExtResource("1_wxonn")
+button_pressed = true
+text = "Planet Interaction"
+
+[node name="UseComputeShader" type="CheckBox" parent="Control/LabelContainer/SettingsContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = ExtResource("1_wxonn")
@@ -52,12 +75,5 @@ theme_override_styles/focus = ExtResource("1_wxonn")
 button_pressed = true
 text = "Use Compute Shader"
 
-[node name="PausedLabel" type="Label" parent="Control/LabelContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 40
-theme_override_styles/normal = ExtResource("1_wxonn")
-text = "Paused"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[connection signal="toggled" from="Control/LabelContainer/CheckBox" to="." method="_on_check_box_toggled"]
+[connection signal="toggled" from="Control/LabelContainer/SettingsContainer/PlanetInteraction" to="." method="_on_planet_interaction_toggled"]
+[connection signal="toggled" from="Control/LabelContainer/SettingsContainer/UseComputeShader" to="." method="_on_use_compute_shader_toggled"]

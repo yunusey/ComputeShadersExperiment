@@ -52,7 +52,8 @@ func _process(delta):
 func _unhandled_input(event):
 	if event.is_action_pressed("toggle_pause"):
 		paused = not paused
-		$Interface/Control/LabelContainer/CheckBox.focus_mode = Control.FOCUS_NONE
+		$Interface/Control/LabelContainer/SettingsContainer/UseComputeShader.focus_mode = Control.FOCUS_NONE
+		$Interface/Control/LabelContainer/SettingsContainer/PlanetInteraction.focus_mode = Control.FOCUS_NONE
 		$Interface.toggle_pause(paused)
 
 		for planet in $Planets.get_children():
@@ -247,17 +248,17 @@ func set_sun_data(data: PackedFloat32Array) -> void:
 		sun.velocity.z = data[i * 10 + 9]
 
 
-func _on_interface_use_compute_shader_changed(toggled_on: bool):
+func _on_interface_use_compute_shader_changed(toggled_on: bool) -> void:
 	self.use_compute_shader = toggled_on
+	self.update_planets()
 
-	if self.use_compute_shader:
-		for planet in $Planets.get_children():
-			planet.handle_process = false
-		for planet in $Suns.get_children():
-			planet.handle_process = false
+func _on_interface_planet_interaction_changed(toggled_on) -> void:
+	self.planet_interaction = toggled_on
+	self.update_planets()
 
-	else:
-		for planet in $Planets.get_children():
-			planet.handle_process = true
-		for planet in $Suns.get_children():
-			planet.handle_process = true
+func update_planets() -> void:
+	for planet in $Planets.get_children():
+		planet.handle_process = not self.use_compute_shader
+		planet.planet_interaction = self.planet_interaction
+	for planet in $Suns.get_children():
+		planet.handle_process = not self.use_compute_shader

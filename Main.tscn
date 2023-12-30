@@ -29,12 +29,11 @@ noise = SubResource("FastNoiseLite_inu84")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i5u1k"]
 render_priority = 0
 shader = ExtResource("3_6xosa")
-shader_parameter/emission_strength = 10.0
+shader_parameter/emission_strength = 20.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_3hgxs")
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_tave0")
-planet_interaction = false
 
 [node name="Interface" parent="." instance=ExtResource("2_ail30")]
 
@@ -55,5 +54,6 @@ is_sun = true
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
+[connection signal="planet_interaction_changed" from="Interface" to="." method="_on_interface_planet_interaction_changed"]
 [connection signal="use_compute_shader_changed" from="Interface" to="." method="_on_interface_use_compute_shader_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
