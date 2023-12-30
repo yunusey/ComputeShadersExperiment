@@ -12,7 +12,7 @@ noise = SubResource("FastNoiseLite_v4qkc")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8t74b"]
 render_priority = 0
 shader = ExtResource("1_dsrr8")
-shader_parameter/emission_strength = 10.0
+shader_parameter/emission_strength = 20.0
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_kcl5s")
 
 [node name="Planet" type="CSGSphere3D"]
@@ -21,4 +21,3 @@ radial_segments = 32
 rings = 32
 material = SubResource("ShaderMaterial_8t74b")
 script = ExtResource("1_sd6ks")
-is_sun = null

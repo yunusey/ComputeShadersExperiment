@@ -8,6 +8,7 @@ var mass: float = 1
 var planets: Array[Node] = []
 var suns: Array[Node] = []
 var handle_process: bool
+var planet_interaction: bool
 var rotation_speed: float
 var paused: bool
 
@@ -29,13 +30,14 @@ func _process(delta):
 		var force: float = (sun.mass * mass) / (distance * distance)
 		net_force += force * delta * position.direction_to(sun.position)
 
-	for planet in planets:
-		if planet == self or not is_instance_of(planet, Planet):
-			continue
+	if planet_interaction:
+		for planet in planets:
+			if planet == self or not is_instance_of(planet, Planet):
+				continue
 
-		var distance: float = position.distance_to(planet.position)
-		var force: float = (planet.mass * mass) / (distance * distance)
-		net_force += force * delta * position.direction_to(planet.position)
+			var distance: float = position.distance_to(planet.position)
+			var force: float = (planet.mass * mass) / (distance * distance)
+			net_force += force * delta * position.direction_to(planet.position)
 
 	velocity += net_force
 	position += velocity * delta
