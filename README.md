@@ -1,5 +1,9 @@
 # ComputeShadersExperiment
 
+<div align="center">
+	<img src="./icon.png" width="200" />
+</div>
+
 Welcome to ComputeShadersExperiment, a Godot project dedicated to exploring the capabilities of compute shaders!
 
 _PS: While there isn't a video showcasing the project due to performance issues during recording, the images below provide a glimpse of what the project accomplishes._
